@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hello-world-app
+  name: knative-apps
   namespace: argocd
 spec:
   project: default
@@ -9,10 +9,10 @@ spec:
   source:
     repoURL: https://github.com/oavramenk/argocd-examples.git
     targetRevision: HEAD
-    path: knative/hello-world.yaml
+    path: knative/
   destination: 
     server: https://kubernetes.default.svc
-    namespace: hello-world
+    namespace: knative-apps
 
   syncPolicy:
     syncOptions:
