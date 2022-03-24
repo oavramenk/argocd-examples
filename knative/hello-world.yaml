@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-      - image: docker.io/oavramenk/hello-world:0.1
+      - image: docker.io/oavramenk/hello-world:0.2
         env:
         - name: TARGET
           value: "Python Sample v1"
