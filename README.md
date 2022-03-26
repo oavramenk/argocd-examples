@@ -1,1 +1,1 @@
-# argocd-examples
+# k8s-examples
