@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: kaniko-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: kaniko-job
+        image: gcr.io/kaniko-project/executor:v1.7.0
+        args: [
+          "--context=git://github.com/oavramenk/k8s-examples.git",
+          "--context-sub-path=demo-apps/hello-world",
+          "--dockerfile=Dockerfile",
+          "--destination=oavramenk/hello-world:0.4",
+          "--verbosity=trace"
+        ]
+        volumeMounts:
+        - name: kaniko-secret
+          mountPath: /kaniko/.docker
+      restartPolicy: Never
+      volumes:
+        - name: kaniko-secret
+          secret:
+            secretName: regcred
+            items:
+              - key: .dockerconfigjson
+                path: config.json
+  backoffLimit: 3

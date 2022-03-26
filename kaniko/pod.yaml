@@ -7,9 +7,10 @@ spec:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:v1.7.0
     args: [
-      "--context=git@github.com:oavramenk/k8s-examples.git",
-      "--dockerfile=Dockerfile.kaniko-demo",
-      "--destination=oavramenk/hello-world:0.3",
+      "--context=git://github.com/oavramenk/k8s-examples.git",
+      "--context-sub-path=demo-apps/hello-world",
+      "--dockerfile=Dockerfile",
+      "--destination=oavramenk/hello-world:0.4",
       "--verbosity=trace"
     ]
     volumeMounts:
