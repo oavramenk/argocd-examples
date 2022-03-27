@@ -1,0 +1,17 @@
+apiVersion: shipwright.io/v1alpha1
+kind: Build
+metadata:
+  name: shipwright
+  annotations:
+    build.build.dev/build-run-deleteion: "true"
+spec:
+  source:
+    url: https://github.com/oavramenk/k8s-examples.git
+    contextDir: demo-apps/hello-world
+  strategy:
+    name: kaniko
+    kind: ClusterBuildStrategy
+  output:
+    image: oavramenk/hello-world:latest
+    credentials:
+      name: docker-creds
